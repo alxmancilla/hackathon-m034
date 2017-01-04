@@ -1,0 +1,63 @@
+[
+  {
+    'repeat(90, 100)': {
+      _id: '{{integer(409999, 412345)}}',
+      location: {
+        type: 'Point',
+        coordinates: '[{{floating(-121.001, -72.001)}},{{floating(33.001, 46.001)}}]'
+      },
+      userID: '{{random(64182, 45339, 43463, 85214, 63821, 23389, 38433, 76747, 66127, 99297, 53478, 85177, 87673, 14579, 70538, 52461, 25329, 52817, 49489, 75365, 70184, 72850, 26808, 62804,15153, 49271, 96629, 80410, 98386, 73405, 16710, 89515, 53953, 45123, 48315, 21663, 44405, 96201, 37703, 44002, 45828, 91677, 51509,83405,88913,53313, 73015,54043, 34301,41572,67562, 54572,40851, 33222,70429, 25892, 95897,33854,80192, 31655, 13527, 30284, 30899, 20372,75857, 34826, 76523,49201,89708,52310, 91677,93744,44620,60331, 45828,51751, 99927,32206, 57482,89479, 74270, 36467, 21632, 48041, 48781, 73680, 22647, 23495, 13402, 13272, 70769, 93930, 86090, 34849, 49629, 58574)}}',
+      manufacturer: '{{random("Apple", "Samsung", "LG", "Huawei")}}',
+      description: '',
+      type: '',
+      name: function (tags) {
+        var appleDevices = [{name: 'iPhone 5', desc: "i5 device"},
+                            {name: 'iPhone 5S', desc:"i5S device"}, 
+                            {name: 'iPhone 6', desc:"i6 device"},
+                            {name: 'iPhone 6S', desc: "i6S device"}, 
+                            {name: 'iPhone 6S Plus', desc:"i6 Plus device"}];
+        var samsungDevices = [{name: 'Galaxy S5', desc: "S5 device"}, 
+                              {name: 'Galaxy S6', desc: "S6 device"}, 
+                              {name: 'Galaxy S6 Edge', desc: "S6 Edge device"},
+                              {name: 'Galaxy S7', desc: "S7 device"}];
+        var lgDevices =[{name: 'Nexus 4', desc: "N4 device"},
+                        {name: 'Nexus 5', desc: "N5 device"}, 
+                        {name: 'Nexus 5X', desc: "N5X device"}];
+        
+        var huaweiDevices = [{name: 'Nexus 6', desc: "N5 device"}, 
+                             {name: 'Nexus 6P', desc: "N5 device"}];
+        
+        var option = this.manufacturer.substring(0,1).toUpperCase();
+        var items = null;
+        switch(option){
+          case 'A':
+            items = appleDevices;
+            break;
+          case 'S':
+            items = samsungDevices;
+            break;
+          case 'L':
+            items = lgDevices;
+            break;
+          case 'H':
+            items = huaweiDevices;
+            break;
+          default:
+            items = appleDevices;
+        }
+        var item = integer(0, items.length - 1);
+        this.description = items[item].desc;
+        return items[item].name;
+      },
+      MACaddress: function () {
+        return (integer(10,255).toString(16)+":"+
+               integer(10,255).toString(16)+":" +
+               integer(10,255).toString(16)+":"+
+               integer(10,255).toString(16)+":"+
+               integer(10,255).toString(16)+":"+
+               integer(10,255).toString(16));
+      }
+    }
+  }
+]
+

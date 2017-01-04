@@ -1,0 +1,18 @@
+[
+  {
+    'repeat(90, 100)': {
+      _id: '{{integer(12345, 99999)}}',
+      firstName: '{{firstName()}}',
+      lastName: '{{surname()}}',
+      userName: function (tags) {
+        // Email tag is deprecated, because now you can produce an email as simple as this:
+        return (this.firstName.substring(0,1) +    this.lastName).toLowerCase();
+      },
+      email: function (tags) {
+        // Email tag is deprecated, because now you can produce an email as simple as this:
+        return (this.firstName.substring(0,1) + this.lastName + '@' + company() + tags.domainZone()).toLowerCase();
+      },
+      state: '{{state()}}'
+    }
+  }
+]
